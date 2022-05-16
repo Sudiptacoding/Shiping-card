@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="handelPhonChange( 'case',true)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handelPhonChange( 'case', false)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="case-balaence">1219</span> </h5>
+                        <img id="case-clear" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button onclick="handelPhonChange('phon', true)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phon-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handelPhonChange('phon', false)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="phon-balaence">59</span> </h5>
+                        <img id="phon-clear" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="totalAmount">1,278</span> </h5>
+                        <h5>$ <span id="total-tax">127</span> </h5>
+                        <h5>$ <span id="sub-total">1,278</span> </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script>
+
+      function handelPhonChange( product, totalCountPhon){
+         const phonCount = document.getElementById(product + '-count');
+         const changeValue = parseInt(phonCount.value);
+         totalCount = changeValue
+         if(totalCountPhon == true && changeValue>0){
+            totalCount = changeValue - 1
+         }
+         if(totalCountPhon == false ){
+            totalCount = changeValue + 1
+         }
+         phonCount.value = totalCount;
+         
+         if(product == 'case'){
+            totalPhonBalaence = totalCount * 1219;
+         }
+         if(product == 'phon'){
+            totalPhonBalaence = totalCount * 59;
+         }
+         document.getElementById(product + '-balaence').innerText = totalPhonBalaence;
+         calculate()
+         }
+
+         function calculate(){
+            const caseInput = document.getElementById('phon-count');
+            const caseCount = parseInt(caseInput.value);
+
+            const phonInput = document.getElementById('case-count');
+            const phonCount = parseInt(phonInput.value);
+
+            const totalBalence = caseCount * 59 + phonCount * 1219;
+            document.getElementById('totalAmount').innerText = totalBalence;
+
+            const tax = Math.round(totalBalence * 0.1);
+            document.getElementById('total-tax').innerText = tax;
+
+            const subTotal = totalBalence + tax;
+            document.getElementById('sub-total').innerText = subTotal;
+         }
+
+
+      document.getElementById('phon-clear').addEventListener('click',function(){
+         document.getElementById('phon-balaence').innerText = "0";
+         document.getElementById('phon-count').value= "0";
+
+         const caseInput = document.getElementById('phon-count');
+            const caseCount = parseInt(caseInput.value);
+
+            const phonInput = document.getElementById('case-count');
+            const phonCount = parseInt(phonInput.value);
+
+            const totalBalence = caseCount * 59 + phonCount * 1219;
+            document.getElementById('totalAmount').innerText = totalBalence;
+            const tax = Math.round(totalBalence * 0.1);
+            document.getElementById('total-tax').innerText = tax;
+
+            const subTotal = totalBalence + tax;
+            document.getElementById('sub-total').innerText = subTotal;
+
+         
+         
+      })
+
+      document.getElementById('case-clear').addEventListener('click',function(){
+         document.getElementById('case-count').value = "0";
+         document.getElementById('case-balaence').innerText= "0";
+         const caseInput = document.getElementById('phon-count');
+            const caseCount = parseInt(caseInput.value);
+            const phonInput = document.getElementById('case-count');
+            const phonCount = parseInt(phonInput.value);
+            const totalBalence = caseCount * 59 + phonCount * 1219;
+            document.getElementById('totalAmount').innerText = totalBalence;
+            const tax = Math.round(totalBalence * 0.1);
+            document.getElementById('total-tax').innerText = tax;
+
+            const subTotal = totalBalence + tax;
+            document.getElementById('sub-total').innerText = subTotal;
+      })
+
+   </script>
+</body>
+
+</html>
