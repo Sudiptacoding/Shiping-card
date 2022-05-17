@@ -118,62 +118,18 @@
             document.getElementById('sub-total').innerText = subTotal;
          }
 
-
       document.getElementById('phon-clear').addEventListener('click',function(){
          document.getElementById('phon-balaence').innerText = "0";
          document.getElementById('phon-count').value= "0";
-         outputCalculation(countproduct);
-          })
+         calculate();
+       })
 
       document.getElementById('case-clear').addEventListener('click',function(){
          document.getElementById('case-count').value = "0";
          document.getElementById('case-balaence').innerText= "0";
-         outputCalculation(countproduct);
+         calculate();
       })
-
-      function outputCalculation(countproduct){
-         const caseInput = document.getElementById(countproduct + '-count');
-            const caseCount = parseInt(caseInput.value);
-            const phonInput = document.getElementById('case-count');
-            const phonCount = parseInt(phonInput.value);
-            const totalBalence = caseCount * 59 + phonCount * 1219;
-            document.getElementById('totalAmount').innerText = totalBalence;
-            const tax = Math.round(totalBalence * 0.1);
-            document.getElementById('total-tax').innerText = tax;
-            const subTotal = totalBalence + tax;
-            document.getElementById('sub-total').innerText = subTotal;
-      }
-
-
-
-
-      // const caseInput = document.getElementById('phon-count');
-      //       const caseCount = parseInt(caseInput.value);
-      //       const phonInput = document.getElementById('case-count');
-      //       const phonCount = parseInt(phonInput.value);
-      //       const totalBalence = caseCount * 59 + phonCount * 1219;
-      //       document.getElementById('totalAmount').innerText = totalBalence;
-      //       const tax = Math.round(totalBalence * 0.1);
-      //       document.getElementById('total-tax').innerText = tax;
-      //       const subTotal = totalBalence + tax;
-      //       document.getElementById('sub-total').innerText = subTotal;
-
-
-
-
-      // const caseInput = document.getElementById('phon-count');
-      //       const caseCount = parseInt(caseInput.value);
-
-      //       const phonInput = document.getElementById('case-count');
-      //       const phonCount = parseInt(phonInput.value);
-
-      //       const totalBalence = caseCount * 59 + phonCount * 1219;
-      //       document.getElementById('totalAmount').innerText = totalBalence;
-      //       const tax = Math.round(totalBalence * 0.1);
-      //       document.getElementById('total-tax').innerText = tax;
-      //       const subTotal = totalBalence + tax;
-      //       document.getElementById('sub-total').innerText = subTotal;
-
+      
    </script>
 </body>
 
